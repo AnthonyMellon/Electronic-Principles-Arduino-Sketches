@@ -1,3 +1,5 @@
+const int ORANGETIME = 2000; //How long an orange light runs for in seconds
+
 class trafficLight
 {
     public:
@@ -23,6 +25,13 @@ class trafficLight
             digitalWrite(RedLed, HIGH);
         }
 
+        void setupPins()
+        {
+            pinMode(RedLed, OUTPUT);
+            pinMode(OrngLed, OUTPUT);
+            pinMode(GrnLed, OUTPUT);
+        }
+
     private:
         void refresh()
         {
@@ -31,8 +40,6 @@ class trafficLight
             digitalWrite(RedLed, LOW);
         }
 };
-
-const int ORANGETIME = 2; //How long an orange light runs for in seconds
 
 bool day; //TRUE if day time, FALSE if night time
 
@@ -48,13 +55,21 @@ void setup()
     MainLight.RedLed = 1;
     MainLight.OrngLed = 2;
     MainLight.GrnLed = 3;
-    MainLight.onTime = 5;
+    MainLight.onTime = 5000;
 
     //Secondary Light Setup
     SecondaryLight.RedLed = 4;
     SecondaryLight.OrngLed = 5;
     SecondaryLight.RedLed = 6;
-    SecondaryLight.onTime = 2.5;
+    SecondaryLight.onTime = 2500;
+
+    //Pin setups
+    pinMode(daySwitch, INPUT);
+    pinMode(secondarySwitch, INPUT);
+    MainLight.setupPins();
+    SecondaryLight.setupPins();
+
+    Serial.begin(9600);
 }
 
 void loop()
@@ -68,6 +83,7 @@ void loop()
     }
     else
     {
+      Serial.println("not day");
         if(digitalRead(secondarySwitch))
         {
             //Turn off the main light

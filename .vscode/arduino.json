@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "Traffic-Lights\\Traffic-Lights.ino",
+    "programmer": "arduino:avrisp"
+}
