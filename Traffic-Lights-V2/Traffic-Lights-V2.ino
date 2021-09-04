@@ -92,7 +92,7 @@ void secondaryLightsOrange()
 void daySequence()
 {
     Serial.println("Day Sequence");
-    
+
     mainLightsGreen();
     mainLightsOrange();
 
@@ -112,28 +112,16 @@ void nightSequence()
     //Secondary Lights right of way
     if(secondaryCross)
     {
-        //Main lights orange
-        mainLights.OrangeLight();
-        delay(ORANGETIME);
-
-        //Secondary lights green
-        mainLights.RedLight();
-        secondaryLights.GreenLight();
-        delay(secondaryLights.onTime);
+        mainLightsOrange();
+        secondaryLightsGreen();
 
         while(secondaryCross)
         {
             secondaryCross = !digitalRead(secondaryButton);
         }
 
-        //Seconday lights orange
-        secondaryLights.OrangeLight();
-        delay(ORANGETIME);
-
-        //Main lights green
-        secondaryLights.RedLight();
-        mainLights.GreenLight();
-        delay(mainLights.onTime);
+        secondaryLightsOrange();
+        mainLightsGreen();
     }    
 }
 
