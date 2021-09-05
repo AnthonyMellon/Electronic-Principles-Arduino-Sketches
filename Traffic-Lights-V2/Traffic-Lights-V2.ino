@@ -1,5 +1,4 @@
 const int ORANGETIME = 2500; //How long an orange light is help for (in milliseconds)
-const int BUTTONGRACE = 250; //Grace period to let go of button (in milliseconds)
 
 class trafficLight
 {
@@ -142,7 +141,6 @@ void loop()
     if (digitalRead(dayButton))
     {
         timeOfDay = day;
-        delay(BUTTONGRACE);
     }   
     else
     {
